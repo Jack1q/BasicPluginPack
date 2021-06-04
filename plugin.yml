@@ -1,0 +1,50 @@
+name: BasicPluginPack
+main: com.gmail.jackdonofrio99.BasicPluginPack
+version: 1.0
+api-version: 1.13
+author: Jack1q
+commands:
+   joindate:
+      description: displays a player's joindate.
+      permission: basicpluginpack.joindate
+      usage: /joindate (username)
+   sethome:
+      description: sets a player's home.
+      permission: basicpluginpack.sethome
+      usage: /sethome
+   home:
+      description: teleports player home
+      permission: basicpluginpack.home
+      usage: /home
+   gethome:
+      description: gives player home location details
+      permission: basicpluginpack.gethome
+      usage: /gethome
+   mute:
+      description: mutes players who are misbehaving
+      permission: basicpluginpack.mute
+      usage: /mute (username)
+   unmute:
+      description: unmutes players who have been muted
+      permission: basicpluginpack.unmute
+      usage: /unmute (username)
+
+permissions:
+   basicpluginpack.joindate: 
+      description: Allows you to see a player's join date.
+      default: true
+   basicpluginpack.sethome: 
+      description: Allows you to set a home warp location
+      default: true
+   basicpluginpack.home: 
+      description: Allows you to teleport to your set home location.
+      default: true
+   basicpluginpack.gethome: 
+      description: Allows you to see details about set home location.
+      default: true
+   basicpluginpack.mute:
+      description: Allows you to mute players.
+      default: op
+   basicpluginpack.unmute:
+      description: Allows you to unmute players.
+      default: op
