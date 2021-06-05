@@ -1,6 +1,5 @@
 package com.gmail.jackdonofrio99;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -20,8 +19,13 @@ public class ChatListener implements Listener {
 		this.plugin = plugin;
 	}
 
+	/**
+	 * Method for handling chat messages as they come in.
+	 * 
+	 * @param event
+	 */
 	@EventHandler
-	public void onChatMessageSend(AsyncPlayerChatEvent event) throws IOException {
+	public void onChatMessageSend(AsyncPlayerChatEvent event) {
 		Player player = event.getPlayer();
 		if (checkIfMuted(player)) {
 			player.sendMessage(ChatColor.RED + "Sorry, you are muted.");
@@ -33,6 +37,12 @@ public class ChatListener implements Listener {
 		event.setFormat(ChatColor.GREEN + player.getDisplayName() + ChatColor.WHITE + ": " + message);
 	}
 
+	/**
+	 * Check if a given player is muted in chat.
+	 * 
+	 * @param player
+	 * @return whether player is set as muted in config.yml or not.
+	 */
 	public boolean checkIfMuted(Player player) {
 		FileConfiguration config = plugin.getConfig();
 		String playerUUID = player.getUniqueId().toString();
@@ -43,7 +53,15 @@ public class ChatListener implements Listener {
 		return false;
 	}
 
-	public String filterMessage(String message) throws IOException {
+	/**
+	 * Filters inappropriate words from chat messages. Words deemed bad can be
+	 * configured in badwords.txt, but I'm planning on changing it to a yml config
+	 * file to allow plugin users an easy way to set bad words.
+	 * 
+	 * @param message
+	 * @return message with inappropriate words filtered out
+	 */
+	public String filterMessage(String message) {
 		InputStream is = plugin.getResource("badwords.txt");
 		Scanner scanner = new Scanner(is);
 		while (scanner.hasNextLine()) {

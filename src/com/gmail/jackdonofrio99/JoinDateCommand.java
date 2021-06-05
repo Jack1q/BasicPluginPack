@@ -1,8 +1,10 @@
 package com.gmail.jackdonofrio99;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,8 +24,14 @@ public class JoinDateCommand implements CommandExecutor {
 		if (Bukkit.getPlayer(username) != null) {
 			joinDateMilliseconds = Bukkit.getPlayer(username).getFirstPlayed();
 		} else {
-			// note: change to Bukkit.getOfflinePlayer(UUID uuid) after UUID converter is finished
-			joinDateMilliseconds = Bukkit.getOfflinePlayer(username).getFirstPlayed();
+			try {
+				joinDateMilliseconds = Bukkit.getOfflinePlayer(UUID.fromString(NameToUUID.getUUID(username)))
+						.getFirstPlayed();
+			} catch (IOException e) {
+				e.printStackTrace();
+				sender.sendMessage(ChatColor.RED + "Could not find player " + username);
+				return true;
+			}
 		}
 		if (joinDateMilliseconds != 0) {
 			Date dateObject = new Date(joinDateMilliseconds);

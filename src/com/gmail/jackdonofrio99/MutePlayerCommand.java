@@ -27,10 +27,10 @@ public class MutePlayerCommand implements CommandExecutor {
 		String username = args[0];
 		String playerUUID;
 		try {
-			playerUUID = new NameToUUIDConverter(username).getUUID();
+			playerUUID = NameToUUID.getUUID(username);
 		} catch (IOException e) {
 			e.printStackTrace();
-			sender.sendMessage(ChatColor.RED + "Cannot find player " + username);
+			sender.sendMessage(ChatColor.RED + "Could not find player " + username);
 			return true;
 		}
 		FileConfiguration config = plugin.getConfig();
