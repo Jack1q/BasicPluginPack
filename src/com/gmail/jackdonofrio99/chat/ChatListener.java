@@ -1,4 +1,4 @@
-package com.gmail.jackdonofrio99;
+package com.gmail.jackdonofrio99.chat;
 
 import java.io.InputStream;
 import java.util.Scanner;

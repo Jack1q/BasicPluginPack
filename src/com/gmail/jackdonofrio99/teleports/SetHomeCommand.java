@@ -1,4 +1,4 @@
-package com.gmail.jackdonofrio99;
+package com.gmail.jackdonofrio99.teleports;
 
 import org.bukkit.Location;
 import org.bukkit.command.Command;

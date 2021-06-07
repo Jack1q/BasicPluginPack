@@ -20,12 +20,12 @@ public class NewPlayerJoinListener implements Listener {
 	@EventHandler
 	public void onNewPlayerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		String playerUUIDString = player.getUniqueId().toString();
-		FileConfiguration config = plugin.getConfig();
-		
-		config.set(playerUUIDString + ".stats.stone_mined", 0);
-		config.set(playerUUIDString + ".stats.exp", 0);
-		plugin.saveConfig();
+//		String playerUUIDString = player.getUniqueId().toString();
+//		FileConfiguration config = plugin.getConfig();
+//		
+//		config.set(playerUUIDString + ".stats.stone_mined", 0);
+//		config.set(playerUUIDString + ".stats.exp", 0);
+//		plugin.saveConfig();
 
 		if (!player.hasPlayedBefore()) {
 			givePlayerStarterKit(player);

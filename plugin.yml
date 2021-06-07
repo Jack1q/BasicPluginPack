@@ -16,10 +16,10 @@ commands:
       description: teleports player home
       permission: basicpluginpack.home
       usage: /home
-   gethome:
+   wherehome:
       description: gives player home location details
-      permission: basicpluginpack.gethome
-      usage: /gethome
+      permission: basicpluginpack.wherehome
+      usage: /wherehome
    mute:
       description: mutes players who are misbehaving
       permission: basicpluginpack.mute
@@ -28,6 +28,26 @@ commands:
       description: unmutes players who have been muted
       permission: basicpluginpack.unmute
       usage: /unmute (username)
+   setspawn: 
+      description: sets the world spawn at current location
+      permission: basicpluginpack.setspawn
+      usage: /setspawn
+   spawn:
+      description: teleports player to spawn
+      permission: basicpluginpack.spawn
+      usage: /spawn
+   lastseen:
+      description: tells you when a player last logged in
+      permission: basicpluginpack.lastseen
+      usage: /lastseen (player)
+   msg: 
+      description: sends private message to player
+      permission: basicpluginpack.msg
+      usage: /msg (player) (message)
+   reply:
+      description: responds to last player to msg you
+      permission: basicpluginpack.reply
+      usage: /reply (message)
 
 permissions:
    basicpluginpack.joindate: 
@@ -39,7 +59,7 @@ permissions:
    basicpluginpack.home: 
       description: Allows you to teleport to your set home location.
       default: true
-   basicpluginpack.gethome: 
+   basicpluginpack.wherehome: 
       description: Allows you to see details about set home location.
       default: true
    basicpluginpack.mute:
@@ -48,3 +68,18 @@ permissions:
    basicpluginpack.unmute:
       description: Allows you to unmute players.
       default: op
+   basicpluginpack.setspawn:
+      description: Allows you to set spawn location.
+      default: op
+   basicpluginpack.spawn:
+      description: Allows you to teleport to spawn.
+      default: true
+   basicpluginpack.lastseen:
+      description: Allows you to see when a player last joined
+      default: true
+   basicpluginpack.msg:
+      description: Allows you to send a message to a player
+      default: true
+   basicpluginpack.reply:
+      description: Allows you to reply to a player
+      default: true

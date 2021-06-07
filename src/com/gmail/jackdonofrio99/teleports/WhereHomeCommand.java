@@ -1,4 +1,4 @@
-package com.gmail.jackdonofrio99;
+package com.gmail.jackdonofrio99.teleports;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,11 +9,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class GetHomeCommand implements CommandExecutor {
+public class WhereHomeCommand implements CommandExecutor {
 
 	private JavaPlugin plugin;
 
-	public GetHomeCommand(JavaPlugin plugin) {
+	public WhereHomeCommand(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
 
