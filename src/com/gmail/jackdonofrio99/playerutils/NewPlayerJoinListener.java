@@ -1,4 +1,4 @@
-package com.gmail.jackdonofrio99;
+package com.gmail.jackdonofrio99.playerutils;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;

@@ -1,5 +1,6 @@
-package com.gmail.jackdonofrio99;
+package com.gmail.jackdonofrio99.playerutils;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.bukkit.Bukkit;
@@ -8,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,7 +30,8 @@ public class LastSeenCommand implements CommandExecutor {
 		String username = args[0];
 		Player player = Bukkit.getPlayerExact(username);
 		if (player == null) {
-			FileConfiguration config = plugin.getConfig();
+			File configFile = new File(plugin.getDataFolder(), "player_data.yml");
+			FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 			String playerUUID;
 			try {
 				playerUUID = NameToUUID.getUUID(username);

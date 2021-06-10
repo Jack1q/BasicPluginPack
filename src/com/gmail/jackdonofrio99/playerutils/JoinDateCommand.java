@@ -1,4 +1,4 @@
-package com.gmail.jackdonofrio99;
+package com.gmail.jackdonofrio99.playerutils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

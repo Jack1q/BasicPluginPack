@@ -48,6 +48,34 @@ commands:
       description: responds to last player to msg you
       permission: basicpluginpack.reply
       usage: /reply (message)
+   ignore:
+      description: ignores a player
+      permission: basicpluginpack.ignore
+      usage: /ignore (player)
+   unignore:
+      description: unignores a player
+      permission: basicpluginpack.unignore
+      usage: /unignore (player)
+   ignorelist:
+      description: displays list of players you are ignoring
+      permission: basicpluginpack.ignorelist
+      usage: /ignorelist
+   list:
+      description: displays list of players online
+      permission: basicpluginpack.list
+      usage: /list
+   warp:
+      description: warps to a set point
+      permission: basicpluginpack.warp
+      usage: /warp (warp name)
+   setwarp:
+      description: sets player warp to current location
+      permission: basicpluginpack.setwarp
+      usage: /setwarp (warp name)
+   warplist:
+      description: sends list of all set warps
+      permission: basicpluginpack.warplist
+      usage: /warplist
 
 permissions:
    basicpluginpack.joindate: 
@@ -82,4 +110,25 @@ permissions:
       default: true
    basicpluginpack.reply:
       description: Allows you to reply to a player
+      default: true
+   basicpluginpack.ignore:
+      description: Allows you to ignore a player
+      default: true
+   basicpluginpack.unignore:
+      description: Allows you to unignore a player
+      default: true
+   basicpluginpack.ignorelist:
+      description: Allows you to see a list of players you're ignoring
+      default: true
+   basicpluginpack.list:
+      description: Allows you to see a list of players online
+      default: true
+   basicpluginpack.warp:
+      description: Allows you to warp to a set point
+      default: true
+   basicpluginpack.setwarp:
+      description: Allows you to set a warp point at your current location
+      default: op
+   basicpluginpack.warplist:
+      description: Allows you to see all warps
       default: true

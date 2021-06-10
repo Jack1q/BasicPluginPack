@@ -1,10 +1,16 @@
 package com.gmail.jackdonofrio99.chat;
 
+import java.io.File;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,9 +38,26 @@ public class ChatListener implements Listener {
 			event.setCancelled(true);
 			return;
 		}
+		for (String ignoringPlayerUUID : getIgnoredByList(player)) {
+			try {
+				Player p = Bukkit.getPlayer(UUID.fromString(ignoringPlayerUUID));
+				event.getRecipients().remove(p);
+			} catch (Exception e) {
+			}
+		}
 		String message = event.getMessage();
 		message = filterMessage(message);
 		event.setFormat(ChatColor.GREEN + player.getDisplayName() + ChatColor.WHITE + ": " + message);
+	}
+
+	public List<String> getIgnoredByList(Player player) {
+		try {
+			FileConfiguration config = YamlConfiguration
+					.loadConfiguration(new File(plugin.getDataFolder(), "player_data.yml"));
+			return config.getStringList(player.getUniqueId().toString() + ".ignoredBy");
+		} catch (Exception e) {
+			return Arrays.asList();
+		}
 	}
 
 	/**
@@ -44,7 +67,8 @@ public class ChatListener implements Listener {
 	 * @return whether player is set as muted in config.yml or not.
 	 */
 	public boolean checkIfMuted(Player player) {
-		FileConfiguration config = plugin.getConfig();
+		File configFile = new File(plugin.getDataFolder(), "player_data.yml");
+		FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 		String playerUUID = player.getUniqueId().toString();
 		String isMutedPath = playerUUID + ".isMuted";
 		if (config.contains(isMutedPath) && config.getBoolean(isMutedPath)) {

@@ -1,10 +1,14 @@
 package com.gmail.jackdonofrio99.chat;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -45,11 +49,16 @@ public class MsgCommand implements CommandExecutor {
 					+ " whispers: " + ChatColor.GRAY + message);
 
 			// save player who last messaged recipient so /reply can work
-			FileConfiguration config = plugin.getConfig();
+
+			File configFile = new File(plugin.getDataFolder(), "player_data.yml");
+			FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 			config.set(recipient.getUniqueId().toString() + ".received_last_message_from",
 					((Player) sender).getUniqueId().toString());
-			plugin.saveConfig();
-
+			try {
+				config.save(configFile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
 			sender.sendMessage(ChatColor.RED + "Could not find player " + args[0]);
 		}

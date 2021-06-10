@@ -1,14 +1,16 @@
 package com.gmail.jackdonofrio99.chat;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.gmail.jackdonofrio99.NameToUUID;
+import com.gmail.jackdonofrio99.playerutils.NameToUUID;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -35,9 +37,14 @@ public class MutePlayerCommand implements CommandExecutor {
 			sender.sendMessage(ChatColor.RED + "Could not find player " + username);
 			return true;
 		}
-		FileConfiguration config = plugin.getConfig();
+		File configFile = new File(plugin.getDataFolder(), "player_data.yml");
+		FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 		config.set(playerUUID + ".isMuted", true);
-		plugin.saveConfig();
+		try {
+			config.save(configFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		sender.sendMessage(ChatColor.AQUA + username + " has been muted.");
 		return true;
 	}

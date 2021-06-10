@@ -14,30 +14,37 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class SetHomeCommand implements CommandExecutor {
+public class SetWarpCommand implements CommandExecutor {
 
 	private JavaPlugin plugin;
 
-	public SetHomeCommand(JavaPlugin plugin) {
+	public SetWarpCommand(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		File configFile = new File(plugin.getDataFolder(), "player_data.yml");
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+
+		if (!(sender instanceof Player))
+			return true;
+		if (args.length != 1) {
+			sender.sendMessage(ChatColor.RED + "Proper usage: /setwarp (warp name)");
+			return true;
+		}
+		String warpName = args[0];
+		File configFile = new File(plugin.getDataFolder(), "warps.yml");
 		FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
-		String playerUUID = ((Player) sender).getUniqueId().toString();
 		Location l = ((Player) sender).getLocation();
-		config.set(playerUUID + ".home.location.world", l.getWorld().getName());
-		config.set(playerUUID + ".home.location.x", l.getX());
-		config.set(playerUUID + ".home.location.y", l.getY());
-		config.set(playerUUID + ".home.location.z", l.getZ());
+		config.set(warpName + ".location.world", l.getWorld().getName());
+		config.set(warpName + ".location.x", l.getX());
+		config.set(warpName + ".location.y", l.getY());
+		config.set(warpName + ".location.z", l.getZ());
 		try {
 			config.save(configFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		sender.sendMessage(ChatColor.AQUA + "Home set.");
+		sender.sendMessage(ChatColor.AQUA + "New warp set.");
 		return true;
 	}
 
