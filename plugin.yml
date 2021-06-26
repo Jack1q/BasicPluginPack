@@ -76,6 +76,18 @@ commands:
       description: sends list of all set warps
       permission: basicpluginpack.warplist
       usage: /warplist
+   tpa:
+      description: sends teleport request to player
+      permission: basicpluginpack.tpa
+      usage: /tpa (player)
+   tpaccept:
+      description: accepts teleport request
+      permission: basicpluginpack.tpaccept
+      usage: /tpaccept
+   tpdeny:
+      description: denies teleport request
+      permission: basicpluginpack.tpdeny
+      usage: /tpdeny
 
 permissions:
    basicpluginpack.joindate: 
@@ -131,4 +143,13 @@ permissions:
       default: op
    basicpluginpack.warplist:
       description: Allows you to see all warps
+      default: true
+   basicpluginpack.tpa:
+      description: Allows you to send tp requests
+      default: true
+   basicpluginpack.tpaccept:
+      description: Allows you to accept tp requests
+      default: true
+   basicpluginpack.tpdeny:
+      description: Allows you to deny tp requests
       default: true

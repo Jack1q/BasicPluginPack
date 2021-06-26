@@ -20,6 +20,9 @@ import com.gmail.jackdonofrio99.teleports.SetHomeCommand;
 import com.gmail.jackdonofrio99.teleports.SetSpawnCommand;
 import com.gmail.jackdonofrio99.teleports.SetWarpCommand;
 import com.gmail.jackdonofrio99.teleports.SpawnCommand;
+import com.gmail.jackdonofrio99.teleports.TeleportAcceptCommand;
+import com.gmail.jackdonofrio99.teleports.TeleportAskCommand;
+import com.gmail.jackdonofrio99.teleports.TeleportDenyCommand;
 import com.gmail.jackdonofrio99.teleports.WarpCommand;
 import com.gmail.jackdonofrio99.teleports.WarpListCommand;
 import com.gmail.jackdonofrio99.teleports.WhereHomeCommand;
@@ -41,6 +44,9 @@ public class BasicPluginPack extends JavaPlugin {
 		this.getCommand("warp").setExecutor(new WarpCommand(this));
 		this.getCommand("setwarp").setExecutor(new SetWarpCommand(this));
 		this.getCommand("warplist").setExecutor(new WarpListCommand(this));
+		this.getCommand("tpa").setExecutor(new TeleportAskCommand(this));
+		this.getCommand("tpaccept").setExecutor(new TeleportAcceptCommand(this));
+		this.getCommand("tpdeny").setExecutor(new TeleportDenyCommand(this));
 
 		this.getCommand("mute").setExecutor(new MutePlayerCommand(this));
 		this.getCommand("unmute").setExecutor(new UnMutePlayerCommand(this));
